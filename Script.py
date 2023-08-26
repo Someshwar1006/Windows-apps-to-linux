@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 
+
 known_apps_file = "known_apps.txt"
 recognized_apps_file = "recognized_apps.txt"
 package_mapping_file = "package_mapping.txt"
@@ -124,12 +125,12 @@ def main():
                 if package_manager == "apt":
                     result = subprocess.run(["apt", "list", "--installed", package_name], capture_output=True, text=True)
                     if f"{package_name}/" in result.stdout:
-                        print(f"{app_name} is available in APT")
+                        print(f"{app_name} is already installed via APT")
                         found = True
                 elif package_manager == "dnf":
                     result = subprocess.run(["dnf", "list", "installed", package_name], capture_output=True, text=True)
                     if f"{package_name}." in result.stdout:
-                        print(f"{app_name} is available in DNF")
+                        print(f"{app_name} is already installed via DNF")
                         found = True
                 # Add more package managers and availability checks here
 
